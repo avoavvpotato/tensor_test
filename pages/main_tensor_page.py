@@ -16,8 +16,6 @@ class MainTensorPage(Base):
         self.driver = driver
         self.action = ActionChains(self.driver)
 
-# Perform the move action
-
     # Locators
     SECTION_STRENGTH = '//p[contains(text(), "Сила в людях")]'
     LINK_ABOUT = '//a[@href="/about"]'
