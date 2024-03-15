@@ -14,7 +14,7 @@ options.add_experimental_option("detach", True)
 #options.add_argument('--headless=new')
 
 PATH_PROJECT = '/home/darya/main_project_tensor/'
-DIRECTORY_DOWNLOAD = 'downloads/'
+DIRECTORY_DOWNLOAD = PATH_PROJECT + 'downloads/'
 FILE_NAME = 'sbisplugin-setup-web.exe'
 
 options.add_experimental_option("prefs", {
