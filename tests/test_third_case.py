@@ -13,14 +13,15 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
 #options.add_argument('--headless=new')
 
-DIRECTORY = '/home/darya/main_project_tenz/downloads'
+PATH_PROJECT = '/home/darya/main_project_tensor/'
+DIRECTORY_DOWNLOAD = 'downloads/'
 FILE_NAME = 'sbisplugin-setup-web.exe'
 
 options.add_experimental_option("prefs", {
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "safebrowsing.enabled": True,
-    "download.default_directory": DIRECTORY
+    "download.default_directory": DIRECTORY_DOWNLOAD
 })
 
 def test_third_case(set_up):
@@ -30,6 +31,6 @@ def test_third_case(set_up):
     msb.move_to_download()
 
     dsp = DownloadSbisPage(driver)
-    dsp.dowload(DIRECTORY, FILE_NAME)
+    dsp.dowload(DIRECTORY_DOWNLOAD, FILE_NAME)
 
     driver.quit()

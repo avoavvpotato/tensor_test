@@ -1,9 +1,10 @@
 import datetime
 import os
 
+PATH_PROJECT = '/home/darya/main_project_tensor/'
 
 class Logger():
-    file_name = f'/home/darya/main_project_tensor/logs/log_' + str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
+    file_name = f'{PATH_PROJECT}logs/log_' + str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
 
     @classmethod
     def write_log_to_file(cls, data: str):
