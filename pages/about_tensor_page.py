@@ -16,18 +16,17 @@ class AboutTensorPage(Base):
         self.driver = driver
         self.action = ActionChains(self.driver)
 
-    # Locators
-    IMAGES_SECTION_WORK = '//img[@class="tensor_ru-About__block3-image new_lazy loaded"]'
-    SECTION_WORK = '//h2[contains(text(), "Работаем")]'
     HEIGHT = 0
     WIDTH = 0
 
+    # Locators
+    IMAGES_SECTION_WORK = '//img[@class="tensor_ru-About__block3-image new_lazy loaded"]'
+    SECTION_WORK = '//h2[contains(text(), "Работаем")]'
+
+    # Getters
     def get_section_work(self):
         return self.driver.find_element(By.XPATH, self.SECTION_WORK)
     
-    def move_to_section_work(self):
-        self.action.move_to_element(self.get_section_work()).perform()
-
     def get_images_section_work(self):
         return WebDriverWait(self.driver, 30).until(EC.presence_of_all_elements_located((By.XPATH, self.IMAGES_SECTION_WORK)))
     
@@ -35,8 +34,15 @@ class AboutTensorPage(Base):
         first_image = self.get_images_section_work()[0].size
         self.HEIGHT = first_image['height']
         self.WIDTH = first_image['width']
+    
+    # Actions
+    def move_to_section_work(self):
+        self.action.move_to_element(self.get_section_work()).perform()
 
+    def get_images_section_work(self):
+        return WebDriverWait(self.driver, 30).until(EC.presence_of_all_elements_located((By.XPATH, self.IMAGES_SECTION_WORK)))
 
+    # Methods
     def check_images_section_work(self):
         Logger.add_start_step(method='check_images_section_work')
         self.move_to_section_work()

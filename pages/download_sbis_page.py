@@ -22,12 +22,14 @@ class DownloadSbisPage(Base):
     PLAGIN = '//div[@class="controls-TabButton__caption"][contains(text(), "Плагин")]'
     FILE_TO_DOWNLOAD = '//a[@href="https://update.sbis.ru/Sbis3Plugin/master/win32/sbisplugin-setup-web.exe"]'
 
+    # Getters
     def get_plagin(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.PLAGIN)))
     
     def get_file_to_download(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.FILE_TO_DOWNLOAD)))
     
+    # Actions
     def click_plagin(self):
         self.driver.execute_script("arguments[0].click();", self.get_plagin())
 
@@ -40,15 +42,8 @@ class DownloadSbisPage(Base):
     def size_file(self):
         text_size = WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.FILE_TO_DOWNLOAD))).text
         return text_size.split()[2]
-        
-    def wait_for_dowload(self, directory, file_name):
-        while True:
-            try:
-                open(os.path.join(directory, file_name))
-                break
-            except:
-                time.sleep(.1)
 
+    # Methods
     def dowload(self, directory, file_name):
         Logger.add_start_step(method='dowload')
         self.wait_for_url()

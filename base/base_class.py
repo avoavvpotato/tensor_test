@@ -1,5 +1,6 @@
 import datetime
 import os
+import time
 
 class Base():
 
@@ -59,3 +60,12 @@ class Base():
     def assert_file_download(self, directory, file):
         file_path = os.path.join(directory, file)
         assert os.access(file_path, os.F_OK) == True
+
+    """Method wait download"""
+    def wait_for_dowload(self, directory, file_name):
+        while True:
+            try:
+                open(os.path.join(directory, file_name))
+                break
+            except:
+                time.sleep(.1)
